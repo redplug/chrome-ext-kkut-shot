@@ -6,7 +6,11 @@ const els = {
   status: document.querySelector("#status"),
   title: document.querySelector("#title"),
   answer: document.querySelector("#answer"),
+  bestScore: document.querySelector("#best-score"),
+  bestDiff: document.querySelector("#best-diff"),
   updated: document.querySelector("#updated"),
+  videoList: document.querySelector("#video-list"),
+  historyList: document.querySelector("#history-list"),
   dataUrl: document.querySelector("#data-url"),
   refreshData: document.querySelector("#refresh-data"),
   refresh: document.querySelector("#refresh")
@@ -15,6 +19,8 @@ const els = {
 let activeTab = null;
 let videoInfo = null;
 let dataset = null;
+let selectedVideoId = "";
+let statsByVideoId = {};
 
 function setStatus(text) {
   els.status.textContent = text;
@@ -23,6 +29,42 @@ function setStatus(text) {
 function setBusy(isBusy) {
   els.refreshData.disabled = isBusy;
   els.refresh.disabled = isBusy;
+}
+
+function getStorageKey(videoId) {
+  return `kkut-shot:${videoId}`;
+}
+
+function scoreFromDiff(diff) {
+  return Math.max(0, 1000 - Math.round(Math.abs(diff) * 100));
+}
+
+function buildStats(entry) {
+  const guesses = entry?.guesses || [];
+  if (!guesses.length) {
+    return { guesses: [], best: null };
+  }
+
+  const best = guesses.reduce((acc, cur) => {
+    if (!acc) return cur;
+    return Math.abs(cur.diff) < Math.abs(acc.diff) ? cur : acc;
+  }, null);
+
+  return {
+    guesses,
+    best: {
+      diff: best.diff,
+      score: scoreFromDiff(best.diff)
+    }
+  };
+}
+
+function formatDiff(diff) {
+  return `${Math.abs(diff).toFixed(3)}초 ${diff < 0 ? "빠름" : "늦음"}`;
+}
+
+function getAnswer(videoId) {
+  return dataset?.videos?.[videoId] || null;
 }
 
 async function getActiveTab() {
@@ -34,8 +76,15 @@ async function sendToContent(type, payload = {}) {
   return chrome.tabs.sendMessage(activeTab.id, { type, ...payload });
 }
 
-function getAnswer(videoId) {
-  return dataset?.videos?.[videoId] || null;
+function getVideoEntries() {
+  const videos = dataset?.videos || {};
+  return Object.entries(videos)
+    .map(([videoId, answer]) => ({ videoId, answer }))
+    .sort((a, b) => {
+      const at = a.answer.publishedAt || a.answer.detectedAt || "";
+      const bt = b.answer.publishedAt || b.answer.detectedAt || "";
+      return bt.localeCompare(at);
+    });
 }
 
 async function loadSettings() {
@@ -46,6 +95,103 @@ async function loadSettings() {
 
 async function saveDataUrl() {
   await chrome.storage.local.set({ [DATA_URL_KEY]: els.dataUrl.value.trim() });
+}
+
+async function loadStats() {
+  const videoEntries = getVideoEntries();
+  const keys = videoEntries.map((item) => getStorageKey(item.videoId));
+  if (!keys.length) {
+    statsByVideoId = {};
+    return;
+  }
+
+  const data = await chrome.storage.local.get(keys);
+  const nextStats = {};
+  for (const item of videoEntries) {
+    nextStats[item.videoId] = buildStats(data[getStorageKey(item.videoId)]);
+  }
+  statsByVideoId = nextStats;
+}
+
+function renderVideoList() {
+  const entries = getVideoEntries();
+  if (!entries.length) {
+    els.videoList.innerHTML = `<div class="history-item">등록된 영상이 없습니다.</div>`;
+    return;
+  }
+
+  els.videoList.innerHTML = entries.map(({ videoId, answer }) => {
+    const stats = statsByVideoId[videoId];
+    const played = stats?.guesses?.length || 0;
+    const scoreText = stats?.best ? `${stats.best.score}점` : "-";
+    const activeClass = selectedVideoId === videoId ? "active" : "";
+    return `
+      <button type="button" class="video-item ${activeClass}" data-video-id="${videoId}">
+        ${answer.title || videoId}
+        <span class="meta">플레이 ${played}회 · 최고 ${scoreText}</span>
+      </button>
+    `;
+  }).join("");
+
+  els.videoList.querySelectorAll(".video-item").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedVideoId = button.dataset.videoId || "";
+      renderInfo();
+      renderVideoList();
+    });
+  });
+}
+
+function renderHistory(stats) {
+  const guesses = stats?.guesses || [];
+  if (!guesses.length) {
+    els.historyList.innerHTML = `<div class="history-item">기록 없음</div>`;
+    return;
+  }
+
+  els.historyList.innerHTML = guesses.map((guess) => `
+    <div class="history-item">
+      <div>입력 ${window.KkutShotTime.formatTimestamp(guess.guessTime)} · 오차 ${formatDiff(guess.diff)}</div>
+      <div class="meta">${new Date(guess.createdAt).toLocaleString()}</div>
+    </div>
+  `).join("");
+}
+
+function renderInfo() {
+  if (!dataset) {
+    els.title.textContent = "-";
+    els.answer.textContent = "-";
+    els.bestScore.textContent = "-";
+    els.bestDiff.textContent = "-";
+    els.updated.textContent = "-";
+    els.historyList.innerHTML = `<div class="history-item">기록 없음</div>`;
+    setStatus("정답 데이터를 먼저 새로고침하세요.");
+    return;
+  }
+
+  const answer = getAnswer(selectedVideoId);
+  const stats = statsByVideoId[selectedVideoId] || { guesses: [], best: null };
+  const revealed = stats.guesses.length > 0;
+
+  els.title.textContent = answer?.title || "영상을 선택하세요.";
+  els.answer.textContent = !answer
+    ? "-"
+    : revealed
+      ? window.KkutShotTime.formatTimestamp(answer.answerTime)
+      : "끝! 찍기 후 공개";
+  els.bestScore.textContent = stats.best ? `${stats.best.score}점` : "-";
+  els.bestDiff.textContent = stats.best ? formatDiff(stats.best.diff) : "-";
+  els.updated.textContent = dataset.updatedAt || "-";
+
+  renderHistory(stats);
+
+  if (!answer) {
+    setStatus("등록 영상을 선택하세요.");
+  } else if (!revealed) {
+    setStatus("정답/감지는 끝! 찍기 후 공개됩니다.");
+  } else {
+    setStatus(answer.detectedAt ? `감지: ${answer.detectedAt}` : "감지 정보 없음");
+  }
 }
 
 async function refreshDataset() {
@@ -71,8 +217,20 @@ async function refreshDataset() {
       [DATASET_KEY]: nextDataset,
       [DATA_URL_KEY]: url
     });
-    await sendToContent("KKUT_REFRESH_ANSWER");
-    setStatus("정답 데이터를 저장했습니다.");
+
+    if (activeTab?.id) {
+      try {
+        await sendToContent("KKUT_REFRESH_ANSWER");
+      } catch (_error) {}
+    }
+
+    if (!selectedVideoId || !getAnswer(selectedVideoId)) {
+      const entries = getVideoEntries();
+      selectedVideoId = entries[0]?.videoId || "";
+    }
+
+    await loadStats();
+    renderVideoList();
     renderInfo();
   } catch (error) {
     setStatus(error.message);
@@ -83,37 +241,24 @@ async function refreshDataset() {
 
 async function refreshInfo() {
   activeTab = await getActiveTab();
-  if (!activeTab?.url?.startsWith("https://www.youtube.com/watch")) {
-    setStatus("YouTube 영상 페이지에서 사용하세요.");
-    return;
+  videoInfo = null;
+
+  if (activeTab?.url?.startsWith("https://www.youtube.com/watch")) {
+    try {
+      videoInfo = await sendToContent("KKUT_GET_VIDEO_INFO");
+    } catch (_error) {}
   }
 
-  videoInfo = await sendToContent("KKUT_GET_VIDEO_INFO");
-  if (!videoInfo?.ok) {
-    setStatus("영상 정보를 찾지 못했습니다. 페이지를 새로고침해 보세요.");
-    return;
+  if (videoInfo?.videoId && getAnswer(videoInfo.videoId)) {
+    selectedVideoId = videoInfo.videoId;
+  } else if (!selectedVideoId || !getAnswer(selectedVideoId)) {
+    const entries = getVideoEntries();
+    selectedVideoId = entries[0]?.videoId || "";
   }
 
+  await loadStats();
+  renderVideoList();
   renderInfo();
-}
-
-function renderInfo() {
-  if (!videoInfo) return;
-
-  const answer = getAnswer(videoInfo.videoId);
-  els.title.textContent = videoInfo.title;
-  els.answer.textContent = answer
-    ? window.KkutShotTime.formatTimestamp(answer.answerTime)
-    : "등록된 정답 없음";
-  els.updated.textContent = dataset?.updatedAt || "-";
-
-  if (answer) {
-    setStatus("이 영상의 정답이 준비됐습니다.");
-  } else if (dataset) {
-    setStatus("데이터에는 있지만 현재 영상 정답은 없습니다.");
-  } else {
-    setStatus("정답 데이터를 먼저 새로고침하세요.");
-  }
 }
 
 els.dataUrl.addEventListener("change", saveDataUrl);

@@ -1,5 +1,5 @@
 body {
-  width: 340px;
+  width: 380px;
   margin: 0;
   background: #151515;
   color: #f7f7f7;
@@ -26,6 +26,15 @@ section {
   padding: 8px 0;
 }
 
+.list-section {
+  margin-top: 10px;
+}
+
+.section-title {
+  margin-bottom: 6px;
+  color: #bdbdbd;
+}
+
 .row {
   display: grid;
   grid-template-columns: 68px 1fr;
@@ -43,6 +52,50 @@ label {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.video-list,
+.history-list {
+  max-height: 140px;
+  overflow: auto;
+  display: grid;
+  gap: 6px;
+}
+
+.video-item {
+  width: 100%;
+  text-align: left;
+  height: auto;
+  padding: 8px;
+  background: #242424;
+  color: #f7f7f7;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.video-item.active {
+  border-color: #ffcf33;
+}
+
+.video-item .meta {
+  display: block;
+  margin-top: 4px;
+  color: #bdbdbd;
+  font-size: 12px;
+}
+
+.history-item {
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 8px;
+  background: #202020;
+}
+
+.history-item .meta {
+  color: #bdbdbd;
+  margin-top: 3px;
+  font-size: 12px;
 }
 
 label {

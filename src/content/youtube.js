@@ -2,7 +2,8 @@
   const DATASET_KEY = "kkut-shot:answers";
   const state = {
     answer: null,
-    lastResult: null
+    lastResult: null,
+    revealed: false
   };
 
   function getVideo() {
@@ -20,8 +21,11 @@
 
   async function loadAnswer() {
     const videoId = window.KkutShotTime.getVideoId();
-    const data = await chrome.storage.local.get(DATASET_KEY);
+    const key = getStorageKey();
+    const data = await chrome.storage.local.get([DATASET_KEY, key]);
     state.answer = data[DATASET_KEY]?.videos?.[videoId] || null;
+    const guesses = data[key]?.guesses || [];
+    state.revealed = guesses.length > 0 || Boolean(state.lastResult);
     renderPanel();
   }
 
@@ -56,11 +60,17 @@
       guessTime,
       diff
     };
+    state.revealed = true;
     saveGuess(guessTime, diff);
     renderPanel();
   }
 
   function renderPanel() {
+    if (!state.answer) {
+      document.querySelector("#kkut-shot-panel")?.remove();
+      return;
+    }
+
     let panel = document.querySelector("#kkut-shot-panel");
     if (!panel) {
       panel = document.createElement("div");
@@ -68,10 +78,12 @@
       document.documentElement.appendChild(panel);
     }
 
-    const answerText = state.answer
+    const answerText = state.revealed
       ? window.KkutShotTime.formatTimestamp(state.answer.answerTime)
-      : "등록된 정답 없음";
-    const sourceText = state.answer?.detectedAt ? `감지: ${state.answer.detectedAt}` : "";
+      : "끝! 찍기 후 공개";
+    const sourceText = state.revealed
+      ? (state.answer?.detectedAt ? `감지: ${state.answer.detectedAt}` : "감지 정보 없음")
+      : "감지/정답은 끝! 찍기 이후에 공개됩니다.";
     const result = state.lastResult
       ? `<div class="kkut-shot-result">
           <div>입력: ${window.KkutShotTime.formatTimestamp(state.lastResult.guessTime)}</div>
@@ -81,7 +93,7 @@
 
     panel.innerHTML = `
       <strong>Kkut Shot</strong>
-      <div class="kkut-shot-muted">${state.answer ? sourceText : "팝업에서 GitHub 정답 데이터를 새로고침하세요."}</div>
+      <div class="kkut-shot-muted">${sourceText}</div>
       <div>정답: ${answerText}</div>
       <button type="button" ${state.answer ? "" : "disabled"}>끝! 찍기</button>
       ${result}
