@@ -1,5 +1,6 @@
 (function () {
   const DATASET_KEY = "kkut-shot:answers";
+  let lastVideoId = "";
   const state = {
     answer: null,
     lastResult: null,
@@ -21,6 +22,20 @@
 
   async function loadAnswer() {
     const videoId = window.KkutShotTime.getVideoId();
+    if (!videoId) {
+      state.answer = null;
+      state.lastResult = null;
+      state.revealed = false;
+      renderPanel();
+      return;
+    }
+
+    if (videoId !== lastVideoId) {
+      state.lastResult = null;
+      state.revealed = false;
+      lastVideoId = videoId;
+    }
+
     const key = getStorageKey();
     const data = await chrome.storage.local.get([DATASET_KEY, key]);
     state.answer = data[DATASET_KEY]?.videos?.[videoId] || null;
@@ -124,5 +139,7 @@
   });
 
   loadAnswer();
-  setInterval(loadAnswer, 3000);
+  setInterval(loadAnswer, 1000);
+  window.addEventListener("yt-navigate-finish", loadAnswer);
+  window.addEventListener("popstate", loadAnswer);
 })();

@@ -134,8 +134,16 @@ function renderVideoList() {
   }).join("");
 
   els.videoList.querySelectorAll(".video-item").forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
       selectedVideoId = button.dataset.videoId || "";
+      const url = selectedVideoId ? `https://www.youtube.com/watch?v=${selectedVideoId}` : "";
+      if (url && activeTab?.id) {
+        try {
+          await chrome.tabs.update(activeTab.id, { url });
+        } catch (_error) {
+          await chrome.tabs.create({ url });
+        }
+      }
       renderInfo();
       renderVideoList();
     });
