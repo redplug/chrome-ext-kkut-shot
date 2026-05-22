@@ -42,6 +42,7 @@ The target videos need a chapter or description line such as `07:22 아웃트로
 
 ```bash
 source .venv/bin/activate
+git pull
 python3 scripts/update_answers.py --commit --push
 ```
 
@@ -63,7 +64,7 @@ Create `~/Library/LaunchAgents/com.kkut-shot.update.plist`:
   <array>
     <string>/bin/zsh</string>
     <string>-lc</string>
-    <string>cd /Users/YOUR_USER/chrome-ext-kkut-shot && source .venv/bin/activate && python3 scripts/update_answers.py --commit --push</string>
+    <string>cd /Users/YOUR_USER/chrome-ext-kkut-shot && source .venv/bin/activate && git pull && python3 scripts/update_answers.py --commit --push</string>
   </array>
   <key>StartCalendarInterval</key>
   <dict>

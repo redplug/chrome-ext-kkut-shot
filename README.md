@@ -1,33 +1,22 @@
 # Kkut Shot
 
-Kkut Shot is a Chrome extension plus a Mac mini background job for playing a timing game around the exact moment a YouTube video says "끝!".
+YouTube 영상에서 "끝!"이 나오는 정확한 시점을 맞추는 Chrome 확장 프로그램입니다. 정답 시간은 맥미니가 하루 한 번 분석해서 GitHub의 `data/answers.json`에 올리고, 확장 프로그램은 그 파일만 읽습니다.
 
-## Architecture
-
-The extension does not run speech recognition. A Mac mini periodically analyzes new videos and publishes detected answer times to `data/answers.json`. The extension downloads that JSON from GitHub and uses the current YouTube video ID to enable the in-page `끝! 찍기` button.
+## 동작 구조
 
 ```text
-Mac mini cron/launchd
-→ YouTube RSS
-→ yt-dlp outro audio clip
-→ faster-whisper "끝" detection
-→ data/answers.json
-→ git commit/push
-→ Chrome extension fetches GitHub JSON
+맥미니: 새 영상 확인 → 아웃트로 오디오 분석 → answers.json 업데이트 → GitHub push
+크롬 확장: answers.json 다운로드 → 현재 영상 정답 조회 → 버튼 입력 오차 계산
 ```
 
-## Repository Layout
+## 개발용 맥에서 시작하기
 
-- `manifest.json`: Chrome extension manifest.
-- `src/content/`: YouTube overlay and timing game.
-- `src/popup/`: popup UI for configuring and refreshing `answers.json`.
-- `src/shared/`: shared time formatting helpers.
-- `scripts/update_answers.py`: Mac mini background updater.
-- `config/channels.example.json`: channel configuration template.
-- `data/answers.json`: published answer database.
-- `docs/`: setup and operation guides.
+```bash
+git clone https://github.com/redplug/chrome-ext-kkut-shot.git
+cd chrome-ext-kkut-shot
+```
 
-## Development Checks
+확장 프로그램 수정 후 기본 검사는 아래 명령으로 합니다.
 
 ```bash
 python3 -m json.tool manifest.json
@@ -37,14 +26,57 @@ node --check src/shared/time.js
 PYTHONPYCACHEPREFIX=.pycache python3 -m py_compile scripts/update_answers.py
 ```
 
-## Guides
+## 맥미니 정답 분석기 설정
 
-- [Mac mini background setup](docs/MACMINI_SETUP.md)
-- [Chrome extension install guide](docs/EXTENSION_INSTALL.md)
-- [GitHub publishing guide](docs/GITHUB_PUBLISHING.md)
+맥미니에서 저장소를 받고 필요한 도구를 설치합니다.
 
-Default answer data URL:
+```bash
+git clone https://github.com/redplug/chrome-ext-kkut-shot.git
+cd chrome-ext-kkut-shot
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r scripts/requirements.txt
+brew install ffmpeg gh
+gh auth login
+```
+
+채널 설정 파일을 만듭니다.
+
+```bash
+cp config/channels.example.json config/channels.json
+```
+
+`config/channels.json`에 대상 유튜버의 `channelId`를 넣습니다. 영상 설명이나 챕터에 `07:22 아웃트로` 같은 항목이 있어야 분석됩니다.
+
+수동 실행:
+
+```bash
+source .venv/bin/activate
+git pull
+python3 scripts/update_answers.py --commit --push
+```
+
+하루 한 번 자동 실행은 [docs/MACMINI_SETUP.md](docs/MACMINI_SETUP.md)의 launchd 설정을 사용하세요.
+
+## 크롬 확장 설치
+
+1. Chrome에서 `chrome://extensions` 열기
+2. Developer mode 켜기
+3. Load unpacked 클릭
+4. 이 저장소 폴더 선택
+5. YouTube 영상에서 확장 팝업 열기
+6. `정답 데이터 새로고침` 클릭
+
+기본 데이터 URL:
 
 ```text
 https://raw.githubusercontent.com/redplug/chrome-ext-kkut-shot/main/data/answers.json
 ```
+
+## 주요 파일
+
+- `src/content/`: YouTube 페이지 오버레이와 게임 버튼
+- `src/popup/`: 정답 데이터 새로고침 UI
+- `scripts/update_answers.py`: 맥미니 정답 분석 스크립트
+- `config/channels.example.json`: 분석 대상 채널 설정 예시
+- `data/answers.json`: 확장 프로그램이 읽는 정답 데이터
