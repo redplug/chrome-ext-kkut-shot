@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-22T12:21:19.262146+00:00",
+  "updatedAt": "2026-05-22T12:24:47.949609+00:00",
   "version": 1,
   "videos": {
     "3gGcFqJu1Vw": {
@@ -15,6 +15,20 @@
       "title": "무조건 봐야하는 역대급 마블 드라마 ≪데어데블: 본 어게인 시즌2≫ 한방에 몰아보기 정주행 총정리",
       "transcript": "이후 드넓은 해변에 도착한 킹핀의 모습을 끝으로 대여덱을 번호게인 시즌2의 이야기는 모두 끝이 납니다.",
       "url": "https://www.youtube.com/watch?v=3gGcFqJu1Vw"
+    },
+    "5bS2LEAshkM": {
+      "answerTime": 541.5,
+      "channelId": "UCKBzr20577Xcn0LJoRVES_A",
+      "channelName": "movie think",
+      "confidence": "manual_outro_end",
+      "detectedAt": "2026-05-22T12:24:47.949598+00:00",
+      "matchedText": "OUTRO_END",
+      "outroLabel": "Outro",
+      "outroTime": 503.0,
+      "publishedAt": "2026-05-16T02:46:52+00:00",
+      "title": "와.. 피터 파커 첫 포스터 공개ㄷㄷ ≪스파이더맨: 브랜드뉴데이≫ 새로운 포스터 & 클립 떡밥 총정리",
+      "transcript": "",
+      "url": "https://www.youtube.com/watch?v=5bS2LEAshkM"
     },
     "AftHLRU3_ls": {
       "answerTime": 721.0,
@@ -43,6 +57,34 @@
       "title": "실시간으로 공개된 ≪어벤져스: 시크릿워즈≫ 촬영 시작 & 캐스팅 루머 총정리",
       "transcript": "끝!",
       "url": "https://www.youtube.com/watch?v=EWVSXLKw4os"
+    },
+    "GM5-3BT1-U0": {
+      "answerTime": 474.5,
+      "channelId": "UCKBzr20577Xcn0LJoRVES_A",
+      "channelName": "movie think",
+      "confidence": "manual_outro_end",
+      "detectedAt": "2026-05-22T12:24:43.117779+00:00",
+      "matchedText": "OUTRO_END",
+      "outroLabel": "Outro",
+      "outroTime": 442.0,
+      "publishedAt": "2026-05-22T02:59:22+00:00",
+      "title": "≪만달로리안과 그로구≫ 보기 전 총정리 + 시사회 노스포 간략 후기",
+      "transcript": "",
+      "url": "https://www.youtube.com/watch?v=GM5-3BT1-U0"
+    },
+    "oRccWYlPmX8": {
+      "answerTime": 651.5,
+      "channelId": "UCKBzr20577Xcn0LJoRVES_A",
+      "channelName": "movie think",
+      "confidence": "manual_outro_end",
+      "detectedAt": "2026-05-22T12:24:45.523857+00:00",
+      "matchedText": "OUTRO_END",
+      "outroLabel": "Outro",
+      "outroTime": 611.0,
+      "publishedAt": "2026-05-18T07:24:27+00:00",
+      "title": "와.. 진짜 미친 게 왔다.. ≪호프≫ 공식 예고편 나노 분석 & 떡밥 총정리",
+      "transcript": "",
+      "url": "https://www.youtube.com/watch?v=oRccWYlPmX8"
     },
     "rNO9razuPK4": {
       "answerTime": 772.0,
