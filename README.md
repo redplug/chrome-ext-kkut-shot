@@ -2,11 +2,9 @@
 
 YouTube 영상에서 `끝!` 타이밍을 맞추는 Chrome 확장 프로그램입니다.
 
-## 사용자 설치 방식 (Git 클론 불필요)
+## 사용자 설치
 
-이제 전체 저장소를 클론하지 않고, **확장 프로그램 전용 ZIP**만 받아서 설치합니다.
-
-1. `kkut-shot-extension.zip` 다운로드
+1. `release/kkut-shot-extension.zip` 다운로드
 2. 원하는 폴더에 압축 해제
 3. Chrome `chrome://extensions` 열기
 4. Developer mode ON
@@ -59,5 +57,4 @@ python scripts/update_answers.py --commit --push
 생성 파일:
 
 - `build/kkut-shot-extension.zip`
-
-이 ZIP을 사용자에게 배포하면 됩니다.
+- `release/kkut-shot-extension.zip` (저장소 배포본)

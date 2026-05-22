@@ -7,6 +7,10 @@
     revealed: false
   };
 
+  function hasValidAnswer(answer) {
+    return Boolean(answer) && Number.isFinite(answer.answerTime);
+  }
+
   function getVideo() {
     return document.querySelector("video");
   }
@@ -38,7 +42,8 @@
     }
 
     const data = await chrome.storage.local.get([DATASET_KEY]);
-    state.answer = data[DATASET_KEY]?.videos?.[videoId] || null;
+    const rawAnswer = data[DATASET_KEY]?.videos?.[videoId] || null;
+    state.answer = hasValidAnswer(rawAnswer) ? rawAnswer : null;
     state.revealed = Boolean(state.lastResult);
     renderPanel();
   }
@@ -86,7 +91,7 @@
   }
 
   function renderPanel() {
-    if (!state.answer) {
+    if (!hasValidAnswer(state.answer)) {
       document.querySelector("#kkut-shot-panel")?.remove();
       return;
     }
