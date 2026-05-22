@@ -112,7 +112,7 @@
       : "";
 
     panel.innerHTML = `
-      <strong>Kkut Shot</strong>
+      <strong>무비띵크 끝 샷!</strong>
       <div class="kkut-shot-muted">${sourceText}</div>
       <div>정답: ${answerText}</div>
       <button type="button" data-action="jump" ${state.answer ? "" : "disabled"}>끝 10초 전으로</button>
