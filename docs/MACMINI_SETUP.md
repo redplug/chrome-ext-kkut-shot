@@ -5,7 +5,7 @@ Use the Mac mini as the always-on analyzer. It checks configured YouTube channel
 ## 1. Clone and Install Tools
 
 ```bash
-git clone git@github.com:<owner>/chrome-ext-kkut-shot.git
+git clone https://github.com/redplug/chrome-ext-kkut-shot.git
 cd chrome-ext-kkut-shot
 python3 -m venv .venv
 source .venv/bin/activate

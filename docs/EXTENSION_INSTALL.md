@@ -5,7 +5,7 @@ Use this on any Mac or PC that only needs to play the timing game.
 ## 1. Download the Extension
 
 ```bash
-git clone https://github.com/<owner>/chrome-ext-kkut-shot.git
+git clone https://github.com/redplug/chrome-ext-kkut-shot.git
 ```
 
 If you are not using Git, download the repository ZIP from GitHub and unzip it.
@@ -22,7 +22,7 @@ If you are not using Git, download the repository ZIP from GitHub and unzip it.
 Open a YouTube video, then open the Kkut Shot extension popup. Enter the raw GitHub data URL:
 
 ```text
-https://raw.githubusercontent.com/<owner>/chrome-ext-kkut-shot/main/data/answers.json
+https://raw.githubusercontent.com/redplug/chrome-ext-kkut-shot/main/data/answers.json
 ```
 
 Click `정답 데이터 새로고침`.

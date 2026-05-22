@@ -1,4 +1,4 @@
-const DEFAULT_DATA_URL = "";
+const DEFAULT_DATA_URL = "https://raw.githubusercontent.com/redplug/chrome-ext-kkut-shot/main/data/answers.json";
 const DATA_URL_KEY = "kkut-shot:data-url";
 const DATASET_KEY = "kkut-shot:answers";
 

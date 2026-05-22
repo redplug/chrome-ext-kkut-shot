@@ -42,3 +42,9 @@ PYTHONPYCACHEPREFIX=.pycache python3 -m py_compile scripts/update_answers.py
 - [Mac mini background setup](docs/MACMINI_SETUP.md)
 - [Chrome extension install guide](docs/EXTENSION_INSTALL.md)
 - [GitHub publishing guide](docs/GITHUB_PUBLISHING.md)
+
+Default answer data URL:
+
+```text
+https://raw.githubusercontent.com/redplug/chrome-ext-kkut-shot/main/data/answers.json
+```
