@@ -9,6 +9,7 @@ build/
 *.crx
 .venv/
 config/channels.json
+config/manual_targets.json
 release/
 !release/
 !release/kkut-shot-extension.zip

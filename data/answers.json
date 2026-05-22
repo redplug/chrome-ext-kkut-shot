@@ -1,33 +1,33 @@
 {
-  "updatedAt": "2026-05-22T11:46:46.969473+00:00",
+  "updatedAt": "2026-05-22T12:21:19.262146+00:00",
   "version": 1,
   "videos": {
     "3gGcFqJu1Vw": {
       "answerTime": 3139.0,
       "channelId": "UCKBzr20577Xcn0LJoRVES_A",
       "channelName": "movie think",
-      "confidence": "manual_override",
-      "detectedAt": "2026-05-22T11:46:17.484597+00:00",
-      "matchedText": "MANUAL_52:19",
+      "confidence": "manual_target_fallback",
+      "detectedAt": "2026-05-22T12:21:19.262130+00:00",
+      "matchedText": "MANUAL_TARGET_52:19",
       "outroLabel": "Outro",
       "outroTime": 3135.0,
       "publishedAt": "2026-05-09T03:06:28+00:00",
       "title": "무조건 봐야하는 역대급 마블 드라마 ≪데어데블: 본 어게인 시즌2≫ 한방에 몰아보기 정주행 총정리",
-      "transcript": "끝!",
+      "transcript": "이후 드넓은 해변에 도착한 킹핀의 모습을 끝으로 대여덱을 번호게인 시즌2의 이야기는 모두 끝이 납니다.",
       "url": "https://www.youtube.com/watch?v=3gGcFqJu1Vw"
     },
     "AftHLRU3_ls": {
       "answerTime": 721.0,
       "channelId": "UCKBzr20577Xcn0LJoRVES_A",
       "channelName": "movie think",
-      "confidence": "manual_override",
-      "detectedAt": "2026-05-22T11:46:06.582682+00:00",
-      "matchedText": "MANUAL_12:01",
+      "confidence": "manual_target_fallback",
+      "detectedAt": "2026-05-22T12:21:10.864551+00:00",
+      "matchedText": "MANUAL_TARGET_12:01",
       "outroLabel": "Outro",
       "outroTime": 714.0,
       "publishedAt": "2026-05-11T05:19:28+00:00",
       "title": "진짜 큰 거 왔다.. ≪호프≫ 선공개 예고편 속 UFO 떡밥 & 나노 분석 총정리",
-      "transcript": "끝!",
+      "transcript": "그럼 전 예고판이 뜨는대로 돌아올게요",
       "url": "https://www.youtube.com/watch?v=AftHLRU3_ls"
     },
     "EWVSXLKw4os": {
@@ -45,17 +45,17 @@
       "url": "https://www.youtube.com/watch?v=EWVSXLKw4os"
     },
     "rNO9razuPK4": {
-      "answerTime": 802.5,
+      "answerTime": 772.0,
       "channelId": "UCKBzr20577Xcn0LJoRVES_A",
       "channelName": "movie think",
-      "confidence": "outro_end",
-      "detectedAt": "2026-05-22T11:46:26.817457+00:00",
-      "matchedText": "OUTRO_END",
+      "confidence": "manual_target_fallback",
+      "detectedAt": "2026-05-22T12:21:03.594015+00:00",
+      "matchedText": "MANUAL_TARGET_12:52",
       "outroLabel": "Outro",
       "outroTime": 764.0,
       "publishedAt": "2026-05-07T08:17:36+00:00",
       "title": "와 미친.. 이건 진짜 안 볼 수가 없다.. ≪오디세이≫ 2차 예고편 떡밥 분석 총정리",
-      "transcript": "끝!",
+      "transcript": "재밌게 보셨으면 구독과 좋아요 부탁드릴게요",
       "url": "https://www.youtube.com/watch?v=rNO9razuPK4"
     }
   }

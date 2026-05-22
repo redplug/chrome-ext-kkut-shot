@@ -1,0 +1,19 @@
+{
+  "targets": [
+    {
+      "videoId": "rNO9razuPK4",
+      "targetTime": "12:52",
+      "windowSeconds": 14
+    },
+    {
+      "videoId": "AftHLRU3_ls",
+      "targetTime": "12:01",
+      "windowSeconds": 14
+    },
+    {
+      "videoId": "3gGcFqJu1Vw",
+      "targetTime": "52:19",
+      "windowSeconds": 18
+    }
+  ]
+}
