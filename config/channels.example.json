@@ -1,0 +1,10 @@
+{
+  "channels": [
+    {
+      "name": "Example Channel",
+      "channelId": "UCxxxxxxxxxxxxxxxxxxxxxx"
+    }
+  ],
+  "captureSeconds": 20,
+  "maxVideosPerRun": 5
+}

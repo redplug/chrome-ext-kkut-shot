@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Kkut Shot",
+  "description": "Guess and detect the exact '끝!' timing in YouTube videos.",
+  "version": "0.1.0",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://raw.githubusercontent.com/*",
+    "https://*.github.io/*"
+  ],
+  "action": {
+    "default_title": "Kkut Shot",
+    "default_popup": "src/popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/watch*"],
+      "js": ["src/shared/time.js", "src/content/youtube.js"],
+      "css": ["src/content/youtube.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
