@@ -22,11 +22,12 @@
 
   async function loadAnswer() {
     const videoId = window.KkutShotTime.getVideoId();
+    state.answer = null;
+    renderPanel();
+
     if (!videoId) {
-      state.answer = null;
       state.lastResult = null;
       state.revealed = false;
-      renderPanel();
       return;
     }
 
@@ -36,11 +37,9 @@
       lastVideoId = videoId;
     }
 
-    const key = getStorageKey();
-    const data = await chrome.storage.local.get([DATASET_KEY, key]);
+    const data = await chrome.storage.local.get([DATASET_KEY]);
     state.answer = data[DATASET_KEY]?.videos?.[videoId] || null;
-    const guesses = data[key]?.guesses || [];
-    state.revealed = guesses.length > 0 || Boolean(state.lastResult);
+    state.revealed = Boolean(state.lastResult);
     renderPanel();
   }
 
@@ -97,8 +96,8 @@
       ? window.KkutShotTime.formatTimestamp(state.answer.answerTime)
       : "끝! 찍기 후 공개";
     const sourceText = state.revealed
-      ? (state.answer?.detectedAt ? `감지: ${state.answer.detectedAt}` : "감지 정보 없음")
-      : "감지/정답은 끝! 찍기 이후에 공개됩니다.";
+      ? "결과가 공개되었습니다."
+      : "정답은 끝! 찍기 이후에 공개됩니다.";
     const result = state.lastResult
       ? `<div class="kkut-shot-result">
           <div>입력: ${window.KkutShotTime.formatTimestamp(state.lastResult.guessTime)}</div>
@@ -140,6 +139,7 @@
 
   loadAnswer();
   setInterval(loadAnswer, 1000);
+  window.addEventListener("yt-navigate-start", loadAnswer);
   window.addEventListener("yt-navigate-finish", loadAnswer);
   window.addEventListener("popstate", loadAnswer);
 })();

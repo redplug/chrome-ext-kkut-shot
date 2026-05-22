@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+  <rect width="900" height="500" fill="#0c0f14"/>
+  <rect x="0" y="70" width="900" height="360" fill="#1a2432"/>
+  <rect x="580" y="300" width="280" height="160" rx="10" fill="#121212" stroke="#3e3e3e"/>
+  <text x="600" y="332" fill="#f4f4f4" font-size="20" font-family="Arial">Kkut Shot</text>
+  <text x="600" y="356" fill="#b9b9b9" font-size="14" font-family="Arial">정답은 끝! 찍기 이후에 공개됩니다.</text>
+  <text x="600" y="384" fill="#f4f4f4" font-size="16" font-family="Arial">정답: 끝! 찍기 후 공개</text>
+  <rect x="600" y="398" width="238" height="40" rx="7" fill="#ffcf33"/>
+  <text x="680" y="424" fill="#111" font-size="18" font-family="Arial" text-anchor="middle">끝! 찍기</text>
+  <text x="44" y="56" fill="#d8e0ea" font-size="22" font-family="Arial">YouTube 플레이 화면 (정답 등록된 영상에서만 오버레이 표시)</text>
+</svg>

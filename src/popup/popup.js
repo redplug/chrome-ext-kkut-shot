@@ -179,14 +179,10 @@ function renderInfo() {
 
   const answer = getAnswer(selectedVideoId);
   const stats = statsByVideoId[selectedVideoId] || { guesses: [], best: null };
-  const revealed = stats.guesses.length > 0;
-
   els.title.textContent = answer?.title || "영상을 선택하세요.";
   els.answer.textContent = !answer
     ? "-"
-    : revealed
-      ? window.KkutShotTime.formatTimestamp(answer.answerTime)
-      : "끝! 찍기 후 공개";
+    : "끝! 찍기 후 공개";
   els.bestScore.textContent = stats.best ? `${stats.best.score}점` : "-";
   els.bestDiff.textContent = stats.best ? formatDiff(stats.best.diff) : "-";
   els.updated.textContent = dataset.updatedAt || "-";
@@ -195,10 +191,8 @@ function renderInfo() {
 
   if (!answer) {
     setStatus("등록 영상을 선택하세요.");
-  } else if (!revealed) {
-    setStatus("정답/감지는 끝! 찍기 후 공개됩니다.");
   } else {
-    setStatus(answer.detectedAt ? `감지: ${answer.detectedAt}` : "감지 정보 없음");
+    setStatus("영상 선택 후 페이지에서 끝! 찍기를 누르세요.");
   }
 }
 
@@ -275,5 +269,6 @@ els.refresh.addEventListener("click", refreshInfo);
 
 (async function init() {
   await loadSettings();
+  await refreshDataset();
   await refreshInfo();
 })();

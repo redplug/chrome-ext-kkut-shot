@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+  <rect width="760" height="460" fill="#101318"/>
+  <rect x="30" y="24" width="700" height="412" rx="14" fill="#1b2029" stroke="#2f3947"/>
+  <text x="52" y="60" fill="#f2f4f8" font-size="24" font-family="Arial">Kkut Shot 팝업 - 등록 영상 리스트</text>
+  <rect x="52" y="86" width="656" height="46" rx="8" fill="#232b37"/>
+  <text x="68" y="115" fill="#cfd7e3" font-size="16" font-family="Arial">선택 영상: 실시간으로 공개된 ≪어벤져스: 시크릿워즈≫ 촬영 시작</text>
+  <rect x="52" y="146" width="320" height="68" rx="8" fill="#232b37"/>
+  <text x="68" y="175" fill="#8bd5ff" font-size="16" font-family="Arial">정답: 끝! 찍기 후 공개</text>
+  <text x="68" y="197" fill="#cfd7e3" font-size="14" font-family="Arial">최고 점수: 984점 · 최고 오차: 0.162초 빠름</text>
+  <rect x="386" y="146" width="322" height="250" rx="8" fill="#151a22" stroke="#344052"/>
+  <text x="404" y="174" fill="#f2f4f8" font-size="16" font-family="Arial">등록된 영상</text>
+  <rect x="404" y="188" width="286" height="52" rx="8" fill="#293444"/>
+  <text x="418" y="211" fill="#f2f4f8" font-size="14" font-family="Arial">실시간으로 공개된 ≪어벤져스...≫</text>
+  <text x="418" y="230" fill="#b9c4d4" font-size="12" font-family="Arial">플레이 3회 · 최고 984점</text>
+  <rect x="404" y="248" width="286" height="52" rx="8" fill="#212b39"/>
+  <text x="418" y="271" fill="#f2f4f8" font-size="14" font-family="Arial">와.. 결국 유출됐습니다..</text>
+  <text x="418" y="290" fill="#b9c4d4" font-size="12" font-family="Arial">플레이 0회 · 최고 -</text>
+  <rect x="404" y="308" width="286" height="52" rx="8" fill="#212b39"/>
+  <text x="418" y="331" fill="#f2f4f8" font-size="14" font-family="Arial">오디세이 2차 예고편 떡밥 분석</text>
+  <text x="418" y="350" fill="#b9c4d4" font-size="12" font-family="Arial">플레이 1회 · 최고 951점</text>
+</svg>
