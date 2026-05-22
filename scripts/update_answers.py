@@ -18,6 +18,9 @@ TARGET_PATTERNS = (
     re.compile(r"끝"),
     re.compile(r"끗"),
 )
+MANUAL_LOCK_VIDEO_IDS = {
+    "GM5-3BT1-U0",
+}
 
 
 def run(command):
@@ -179,6 +182,10 @@ def find_kkut(segments, capture_start):
 
 def update_video(video, channel, answers, capture_seconds, force=False):
     video_id = video["videoId"]
+    if video_id in MANUAL_LOCK_VIDEO_IDS:
+        print(f"Checking {video_id}: {video['title']}")
+        print("  skipped: manual lock")
+        return False
     if video_id in answers["videos"] and not force:
         return False
 
