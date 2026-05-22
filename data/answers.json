@@ -3,12 +3,12 @@
   "version": 1,
   "videos": {
     "3gGcFqJu1Vw": {
-      "answerTime": 3144.04,
+      "answerTime": 3169.5,
       "channelId": "UCKBzr20577Xcn0LJoRVES_A",
       "channelName": "movie think",
-      "confidence": "candidate",
+      "confidence": "outro_end",
       "detectedAt": "2026-05-22T11:46:17.484597+00:00",
-      "matchedText": "끝!",
+      "matchedText": "OUTRO_END",
       "outroLabel": "Outro",
       "outroTime": 3135.0,
       "publishedAt": "2026-05-09T03:06:28+00:00",
@@ -17,12 +17,12 @@
       "url": "https://www.youtube.com/watch?v=3gGcFqJu1Vw"
     },
     "AftHLRU3_ls": {
-      "answerTime": 725.57,
+      "answerTime": 752.5,
       "channelId": "UCKBzr20577Xcn0LJoRVES_A",
       "channelName": "movie think",
-      "confidence": "candidate",
+      "confidence": "outro_end",
       "detectedAt": "2026-05-22T11:46:06.582682+00:00",
-      "matchedText": "끝!",
+      "matchedText": "OUTRO_END",
       "outroLabel": "Outro",
       "outroTime": 714.0,
       "publishedAt": "2026-05-11T05:19:28+00:00",
@@ -45,12 +45,12 @@
       "url": "https://www.youtube.com/watch?v=EWVSXLKw4os"
     },
     "rNO9razuPK4": {
-      "answerTime": 764.46,
+      "answerTime": 802.5,
       "channelId": "UCKBzr20577Xcn0LJoRVES_A",
       "channelName": "movie think",
-      "confidence": "candidate",
+      "confidence": "outro_end",
       "detectedAt": "2026-05-22T11:46:26.817457+00:00",
-      "matchedText": "끝!",
+      "matchedText": "OUTRO_END",
       "outroLabel": "Outro",
       "outroTime": 764.0,
       "publishedAt": "2026-05-07T08:17:36+00:00",
