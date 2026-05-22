@@ -4,7 +4,9 @@ YouTube 영상에서 `끝!` 타이밍을 맞추는 Chrome 확장 프로그램입
 
 ## 사용자 설치
 
-1. `release/kkut-shot-extension.zip` 다운로드
+다운로드: [kkut-shot-extension.zip](./release/kkut-shot-extension.zip)
+
+1. 위 링크로 ZIP 다운로드
 2. 원하는 폴더에 압축 해제
 3. Chrome `chrome://extensions` 열기
 4. Developer mode ON
