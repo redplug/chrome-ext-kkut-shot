@@ -7,13 +7,24 @@ Use the Mac mini as the always-on analyzer. It checks configured YouTube channel
 ```bash
 git clone https://github.com/redplug/chrome-ext-kkut-shot.git
 cd chrome-ext-kkut-shot
-python3 -m venv .venv
+brew install python@3.12 ffmpeg gh
+python3.12 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r scripts/requirements.txt
-brew install ffmpeg
 ```
 
 `yt-dlp` uses `ffmpeg` to cut and convert the outro audio.
+
+Use `python3.12` for the virtual environment. If `python3` points to Python 3.14, venv creation can fail with an `ensurepip` error.
+
+If that happened, recreate the virtual environment:
+
+```bash
+rm -rf .venv
+python3.12 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r scripts/requirements.txt
+```
 
 ## 2. Configure Channels
 

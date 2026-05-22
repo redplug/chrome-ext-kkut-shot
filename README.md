@@ -33,11 +33,20 @@ PYTHONPYCACHEPREFIX=.pycache python3 -m py_compile scripts/update_answers.py
 ```bash
 git clone https://github.com/redplug/chrome-ext-kkut-shot.git
 cd chrome-ext-kkut-shot
-python3 -m venv .venv
+brew install python@3.12 ffmpeg gh
+python3.12 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r scripts/requirements.txt
-brew install ffmpeg gh
 gh auth login
+```
+
+`python3`가 3.14 같은 최신/실험 버전을 가리키면 `ensurepip` 오류로 가상환경 생성이 실패할 수 있습니다. 이 프로젝트의 맥미니 분석기는 `python3.12`로 만드세요. 이미 실패한 `.venv`가 있으면 지우고 다시 생성합니다.
+
+```bash
+rm -rf .venv
+python3.12 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r scripts/requirements.txt
 ```
 
 채널 설정 파일을 만듭니다.
