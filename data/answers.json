@@ -3,12 +3,12 @@
   "version": 1,
   "videos": {
     "3gGcFqJu1Vw": {
-      "answerTime": 3169.5,
+      "answerTime": 3139.0,
       "channelId": "UCKBzr20577Xcn0LJoRVES_A",
       "channelName": "movie think",
-      "confidence": "outro_end",
+      "confidence": "manual_override",
       "detectedAt": "2026-05-22T11:46:17.484597+00:00",
-      "matchedText": "OUTRO_END",
+      "matchedText": "MANUAL_52:19",
       "outroLabel": "Outro",
       "outroTime": 3135.0,
       "publishedAt": "2026-05-09T03:06:28+00:00",
@@ -17,12 +17,12 @@
       "url": "https://www.youtube.com/watch?v=3gGcFqJu1Vw"
     },
     "AftHLRU3_ls": {
-      "answerTime": 752.5,
+      "answerTime": 721.0,
       "channelId": "UCKBzr20577Xcn0LJoRVES_A",
       "channelName": "movie think",
-      "confidence": "outro_end",
+      "confidence": "manual_override",
       "detectedAt": "2026-05-22T11:46:06.582682+00:00",
-      "matchedText": "OUTRO_END",
+      "matchedText": "MANUAL_12:01",
       "outroLabel": "Outro",
       "outroTime": 714.0,
       "publishedAt": "2026-05-11T05:19:28+00:00",
