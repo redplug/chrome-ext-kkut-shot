@@ -79,6 +79,12 @@
     renderPanel();
   }
 
+  function jumpToBeforeAnswer() {
+    const video = getVideo();
+    if (!video || !state.answer) return;
+    video.currentTime = Math.max(0, state.answer.answerTime - 10);
+  }
+
   function renderPanel() {
     if (!state.answer) {
       document.querySelector("#kkut-shot-panel")?.remove();
@@ -109,10 +115,12 @@
       <strong>Kkut Shot</strong>
       <div class="kkut-shot-muted">${sourceText}</div>
       <div>정답: ${answerText}</div>
-      <button type="button" ${state.answer ? "" : "disabled"}>끝! 찍기</button>
+      <button type="button" data-action="jump" ${state.answer ? "" : "disabled"}>끝 10초 전으로</button>
+      <button type="button" data-action="judge" ${state.answer ? "" : "disabled"}>끝! 찍기</button>
       ${result}
     `;
-    panel.querySelector("button")?.addEventListener("click", judgeGuess);
+    panel.querySelector("[data-action='jump']")?.addEventListener("click", jumpToBeforeAnswer);
+    panel.querySelector("[data-action='judge']")?.addEventListener("click", judgeGuess);
   }
 
   chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
