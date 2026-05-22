@@ -68,6 +68,16 @@ def fetch_video_info(url):
     return json.loads(result.stdout)
 
 
+def is_short_video(info):
+    duration = info.get("duration")
+    webpage_url = (info.get("webpage_url") or "").lower()
+    if "/shorts/" in webpage_url:
+        return True
+    if isinstance(duration, (int, float)) and duration <= 70:
+        return True
+    return False
+
+
 def parse_timestamp(value):
     parts = [int(part) for part in value.split(":")]
     if len(parts) == 2:
@@ -174,6 +184,9 @@ def update_video(video, channel, answers, capture_seconds, force=False):
 
     print(f"Checking {video_id}: {video['title']}")
     info = fetch_video_info(video["url"])
+    if is_short_video(info):
+        print("  skipped: short video")
+        return False
     outro_time, outro_label = find_outro_time(info)
     if outro_time is None:
         print("  skipped: no outro chapter")

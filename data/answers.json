@@ -1,7 +1,35 @@
 {
-  "updatedAt": "2026-05-22T11:33:59.539423+00:00",
+  "updatedAt": "2026-05-22T11:46:46.969473+00:00",
   "version": 1,
   "videos": {
+    "3gGcFqJu1Vw": {
+      "answerTime": 3144.04,
+      "channelId": "UCKBzr20577Xcn0LJoRVES_A",
+      "channelName": "movie think",
+      "confidence": "candidate",
+      "detectedAt": "2026-05-22T11:46:17.484597+00:00",
+      "matchedText": "끝!",
+      "outroLabel": "Outro",
+      "outroTime": 3135.0,
+      "publishedAt": "2026-05-09T03:06:28+00:00",
+      "title": "무조건 봐야하는 역대급 마블 드라마 ≪데어데블: 본 어게인 시즌2≫ 한방에 몰아보기 정주행 총정리",
+      "transcript": "끝!",
+      "url": "https://www.youtube.com/watch?v=3gGcFqJu1Vw"
+    },
+    "AftHLRU3_ls": {
+      "answerTime": 725.57,
+      "channelId": "UCKBzr20577Xcn0LJoRVES_A",
+      "channelName": "movie think",
+      "confidence": "candidate",
+      "detectedAt": "2026-05-22T11:46:06.582682+00:00",
+      "matchedText": "끝!",
+      "outroLabel": "Outro",
+      "outroTime": 714.0,
+      "publishedAt": "2026-05-11T05:19:28+00:00",
+      "title": "진짜 큰 거 왔다.. ≪호프≫ 선공개 예고편 속 UFO 떡밥 & 나노 분석 총정리",
+      "transcript": "끝!",
+      "url": "https://www.youtube.com/watch?v=AftHLRU3_ls"
+    },
     "EWVSXLKw4os": {
       "answerTime": 479.59,
       "channelId": "UCKBzr20577Xcn0LJoRVES_A",
@@ -15,6 +43,20 @@
       "title": "실시간으로 공개된 ≪어벤져스: 시크릿워즈≫ 촬영 시작 & 캐스팅 루머 총정리",
       "transcript": "끝!",
       "url": "https://www.youtube.com/watch?v=EWVSXLKw4os"
+    },
+    "rNO9razuPK4": {
+      "answerTime": 764.46,
+      "channelId": "UCKBzr20577Xcn0LJoRVES_A",
+      "channelName": "movie think",
+      "confidence": "candidate",
+      "detectedAt": "2026-05-22T11:46:26.817457+00:00",
+      "matchedText": "끝!",
+      "outroLabel": "Outro",
+      "outroTime": 764.0,
+      "publishedAt": "2026-05-07T08:17:36+00:00",
+      "title": "와 미친.. 이건 진짜 안 볼 수가 없다.. ≪오디세이≫ 2차 예고편 떡밥 분석 총정리",
+      "transcript": "끝!",
+      "url": "https://www.youtube.com/watch?v=rNO9razuPK4"
     }
   }
 }
