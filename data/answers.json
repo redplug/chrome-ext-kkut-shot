@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-22T12:24:47.949609+00:00",
+  "updatedAt": "2026-05-22T12:29:23.631647+00:00",
   "version": 1,
   "videos": {
     "3gGcFqJu1Vw": {
@@ -59,12 +59,12 @@
       "url": "https://www.youtube.com/watch?v=EWVSXLKw4os"
     },
     "GM5-3BT1-U0": {
-      "answerTime": 474.5,
+      "answerTime": 445.0,
       "channelId": "UCKBzr20577Xcn0LJoRVES_A",
       "channelName": "movie think",
-      "confidence": "manual_outro_end",
-      "detectedAt": "2026-05-22T12:24:43.117779+00:00",
-      "matchedText": "OUTRO_END",
+      "confidence": "manual_override",
+      "detectedAt": "2026-05-22T12:29:23.631602+00:00",
+      "matchedText": "MANUAL_07:25",
       "outroLabel": "Outro",
       "outroTime": 442.0,
       "publishedAt": "2026-05-22T02:59:22+00:00",
