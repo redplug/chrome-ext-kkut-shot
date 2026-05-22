@@ -34,20 +34,12 @@ PYTHONPYCACHEPREFIX=.pycache python3 -m py_compile scripts/update_answers.py
 git clone https://github.com/redplug/chrome-ext-kkut-shot.git
 cd chrome-ext-kkut-shot
 brew install python@3.12 ffmpeg gh
-python3.12 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r scripts/requirements.txt
+brew install uv yt-dlp
+./scripts/setup_macmini.sh
 gh auth login
 ```
 
-`python3`가 3.14 같은 최신/실험 버전을 가리키면 `ensurepip` 오류로 가상환경 생성이 실패할 수 있습니다. 이 프로젝트의 맥미니 분석기는 `python3.12`로 만드세요. 이미 실패한 `.venv`가 있으면 지우고 다시 생성합니다.
-
-```bash
-rm -rf .venv
-python3.12 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r scripts/requirements.txt
-```
+`python3`가 3.14 같은 최신/실험 버전 또는 일부 외부 관리 배포판(PEP 668)일 때 `ensurepip` 오류로 `venv` 생성이 실패할 수 있습니다. `scripts/setup_macmini.sh`는 `uv`로 Python 3.12 환경을 강제로 만들어 이런 문제를 우회합니다.
 
 채널 설정 파일을 만듭니다.
 

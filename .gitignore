@@ -7,3 +7,5 @@ dist/
 build/
 *.zip
 *.crx
+.venv/
+config/channels.json
