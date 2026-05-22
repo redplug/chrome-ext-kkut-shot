@@ -103,12 +103,12 @@
       document.documentElement.appendChild(panel);
     }
 
-    const answerText = state.revealed
-      ? window.KkutShotTime.formatTimestamp(state.answer.answerTime)
-      : "끝! 찍기 후 공개";
     const sourceText = state.revealed
       ? "결과가 공개되었습니다."
       : "정답은 끝! 찍기 이후에 공개됩니다.";
+    const answerBlock = state.revealed
+      ? `<div>정답: ${window.KkutShotTime.formatTimestamp(state.answer.answerTime)}</div>`
+      : "";
     const result = state.lastResult
       ? `<div class="kkut-shot-result">
           <div>입력: ${window.KkutShotTime.formatTimestamp(state.lastResult.guessTime)}</div>
@@ -119,9 +119,11 @@
     panel.innerHTML = `
       <strong>무비띵크 끝 샷!</strong>
       <div class="kkut-shot-muted">${sourceText}</div>
-      <div>정답: ${answerText}</div>
-      <button type="button" data-action="jump" ${state.answer ? "" : "disabled"}>끝 10초 전으로</button>
-      <button type="button" data-action="judge" ${state.answer ? "" : "disabled"}>끝! 찍기</button>
+      ${answerBlock}
+      <div class="kkut-shot-actions">
+        <button type="button" data-action="jump" ${state.answer ? "" : "disabled"}>끝 10초 전</button>
+        <button type="button" data-action="judge" ${state.answer ? "" : "disabled"}>끝! 찍기</button>
+      </div>
       ${result}
     `;
     panel.querySelector("[data-action='jump']")?.addEventListener("click", jumpToBeforeAnswer);

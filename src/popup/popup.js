@@ -81,8 +81,8 @@ function getVideoEntries() {
   return Object.entries(videos)
     .map(([videoId, answer]) => ({ videoId, answer }))
     .sort((a, b) => {
-      const at = a.answer.publishedAt || a.answer.detectedAt || "";
-      const bt = b.answer.publishedAt || b.answer.detectedAt || "";
+      const at = a.answer.publishedAt || "";
+      const bt = b.answer.publishedAt || "";
       return bt.localeCompare(at);
     });
 }
@@ -182,7 +182,7 @@ function renderInfo() {
   els.title.textContent = answer?.title || "영상을 선택하세요.";
   els.answer.textContent = !answer
     ? "-"
-    : "끝! 찍기 후 공개";
+    : "비공개";
   els.bestScore.textContent = stats.best ? `${stats.best.score}점` : "-";
   els.bestDiff.textContent = stats.best ? formatDiff(stats.best.diff) : "-";
   els.updated.textContent = dataset.updatedAt || "-";

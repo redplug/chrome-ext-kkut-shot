@@ -22,13 +22,19 @@
 #kkut-shot-panel button {
   width: 100%;
   height: 34px;
-  margin-top: 8px;
   border: 0;
   border-radius: 6px;
   background: #ffcf33;
   color: #111;
   font-weight: 700;
   cursor: pointer;
+}
+
+#kkut-shot-panel .kkut-shot-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 #kkut-shot-panel .kkut-shot-muted {
